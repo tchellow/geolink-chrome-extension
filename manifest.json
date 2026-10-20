@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "GeoLink v1.0",
+  "version": "1.0",
+  "description": "Lê coordenadas copiadas do Google e abre o local no topographic-map.com",
+  "permissions": [
+    "clipboardRead",
+    "tabs",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Abrir coordenadas no mapa topográfico",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
