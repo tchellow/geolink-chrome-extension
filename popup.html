@@ -42,14 +42,122 @@
     #status.error {
       color: #c5221f;
     }
+    button.secundario {
+      margin-top: 6px;
+      background: #fff;
+      color: #1a73e8;
+      border: 1px solid #1a73e8;
+      padding: 9px;
+    }
+    button.secundario:hover {
+      background: #e8f0fe;
+    }
+    button.secundario:disabled {
+      background: #fff;
+      color: #b0b0b0;
+      border-color: #c8c8c8;
+    }
+    .topo-app {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: -2px 0 12px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #222;
+    }
+    .titulo {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .titulo h1 {
+      flex: 1;
+    }
+    button.ajuda {
+      flex: none;
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      border-radius: 50%;
+      background: #fff;
+      color: #1a73e8;
+      border: 1.5px solid #1a73e8;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 15px;
+    }
+    button.ajuda:hover,
+    button.ajuda[aria-expanded="true"] {
+      background: #1a73e8;
+      color: #fff;
+    }
+    .texto-ajuda {
+      font-size: 12px;
+      color: #444;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 8px;
+      margin: -2px 0 10px 0;
+      line-height: 1.45;
+    }
+    #pontosVisada {
+      font-size: 12px;
+      color: #444;
+      margin: -4px 0 8px 0;
+      line-height: 1.5;
+    }
+    #pontosVisada:empty {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <h1 id="headingClipboard">Verificando área de transferência...</h1>
+  <header class="topo-app">
+    <img src="icon32.png" alt="" width="20" height="20">
+    <span>GeoLink</span>
+  </header>
+
+  <div class="titulo">
+    <h1 id="headingClipboard">Verificando área de transferência...</h1>
+    <button class="ajuda" data-ajuda="ajudaTopografico" aria-expanded="false" title="Como funciona">?</button>
+  </div>
+  <div class="texto-ajuda" id="ajudaTopografico" hidden>
+    No Google Maps, clique com o botão direito no ponto e clique na coordenada (primeira linha do menu) para copiá-la.
+    Abra o GeoLink: a coordenada copiada aparece acima e o botão abre o ponto no topographic-map.com, com zoom 12 e marcador.
+  </div>
   <button id="btn" disabled>Abrir Mapa Topográfico</button>
 
-  <h1 id="headingTopo" style="margin-top:16px;">De Topográfico para Google Maps</h1>
+  <div class="titulo" style="margin-top:16px;">
+    <h1 id="headingTopo">De Topográfico para Google Maps</h1>
+    <button class="ajuda" data-ajuda="ajudaGoogleMaps" aria-expanded="false" title="Como funciona">?</button>
+  </div>
+  <div class="texto-ajuda" id="ajudaGoogleMaps" hidden>
+    No topographic-map.com, clique no mapa para marcar um ponto. Com essa aba aberta, abra o GeoLink e clique no botão
+    para ver o mesmo ponto no Google Maps.
+  </div>
   <button id="btnFromTopo" disabled>Abrir esta localização no Google Maps</button>
+
+  <div class="titulo" style="margin-top:16px;">
+    <h1 id="headingVisada">Visada (medição no Google Maps)</h1>
+    <button class="ajuda" data-ajuda="ajudaVisada" aria-expanded="false" title="Como funciona">?</button>
+  </div>
+  <div class="texto-ajuda" id="ajudaVisada" hidden>
+    No Google Maps, clique com o botão direito no ponto de origem e escolha <b>Medir distância</b>; depois clique no
+    ponto de destino. Com a medição aberta, abra o GeoLink: os dois pontos e a distância aparecem abaixo e os botões
+    geram a visada.
+    Só são aceitas medições com exatamente 2 pontos.<br><br>
+    <b>Gerar visada (GeoLink)</b>: abre uma aba com o perfil do terreno (OpenTopoData, SRTM 30 m), a linha de
+    visada, a curvatura da Terra e a zona de Fresnel, com altura das antenas e frequência editáveis.<br>
+    <b>Gerar visada no Solwise</b>: abre a ferramenta do Solwise já com os dois marcadores. Depende da cota do
+    Google usada pelo Solwise, que às vezes se esgota.
+  </div>
+  <div id="pontosVisada"></div>
+  <button id="btnVisada" disabled>Gerar visada (GeoLink)</button>
+  <button id="btnSolwise" class="secundario" disabled>Gerar visada no Solwise</button>
 
   <div id="status"></div>
   <script src="popup.js"></script>

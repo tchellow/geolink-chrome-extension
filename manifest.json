@@ -1,13 +1,28 @@
 {
   "manifest_version": 3,
-  "name": "GeoLink v1.0",
-  "version": "1.0",
-  "description": "Lê coordenadas copiadas do Google e abre o local no topographic-map.com",
+  "name": "GeoLink v1.1",
+  "version": "1.1",
+  "description": "Lê coordenadas copiadas do Google e abre o local no topographic-map.com; gera a visada no Solwise a partir de uma medição de 2 pontos no Google Maps",
   "permissions": [
     "clipboardRead",
     "tabs",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
+  "host_permissions": [
+    "https://www.solwise.co.uk/*",
+    "https://api.opentopodata.org/*",
+    "https://api.open-meteo.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["visada.html", "visada.js", "icon32.png"],
+      "matches": ["https://*.google.com/*", "https://*.google.com.br/*"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_title": "Abrir coordenadas no mapa topográfico",

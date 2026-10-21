@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visada — GeoLink</title>
+  <link rel="icon" href="icon32.png">
+  <style>
+    body {
+      font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 0;
+      padding: 16px 24px 32px;
+      background: #f7f7f8;
+      color: #222;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .topo-app {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .topo-app .sub {
+      font-weight: 400;
+      color: #666;
+      font-size: 15px;
+    }
+    .pontos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 24px;
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 12px;
+    }
+    .pontos b {
+      color: #222;
+    }
+    .controles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      align-items: flex-end;
+      margin-bottom: 14px;
+    }
+    .controles label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+      color: #444;
+    }
+    .controles input {
+      width: 110px;
+      padding: 6px 8px;
+      font-size: 14px;
+      border: 1px solid #c8c8c8;
+      border-radius: 6px;
+      background: #fff;
+    }
+    .controles input:focus {
+      outline: 2px solid #1a73e8;
+      outline-offset: -1px;
+    }
+    #estado {
+      font-size: 14px;
+      color: #444;
+      padding: 12px 0;
+    }
+    #estado.error {
+      color: #c5221f;
+    }
+    #estado button {
+      margin-left: 8px;
+      padding: 6px 12px;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .cartao {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+    #graficoWrap {
+      position: relative;
+      padding: 8px;
+    }
+    #grafico {
+      display: block;
+      width: 100%;
+      height: 380px;
+    }
+    #dica {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(32, 33, 36, 0.92);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 6px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    #diagnostico {
+      margin: 14px 0 10px;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+    #diagnostico.ok { background: #e6f4ea; color: #137333; }
+    #diagnostico.aviso { background: #fef7e0; color: #8a5a00; }
+    #diagnostico.obstruida { background: #fce8e6; color: #c5221f; }
+    #resumo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 10px;
+    }
+    #resumo .cartao {
+      padding: 10px 12px;
+    }
+    #resumo .rotulo {
+      font-size: 12px;
+      color: #666;
+    }
+    #resumo .valor {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    #resumo .detalhe {
+      font-size: 12px;
+      color: #666;
+    }
+    .nota {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+      margin-top: 16px;
+    }
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="topo-app">
+      <img src="icon32.png" alt="" width="22" height="22">
+      <span>GeoLink</span>
+      <span class="sub">Visada A → B</span>
+    </header>
+
+    <section class="pontos" id="pontos"></section>
+
+    <section class="controles">
+      <label>Altura da antena A (m)
+        <input id="alturaA" type="number" min="0" step="1" value="10">
+      </label>
+      <label>Altura da antena B (m)
+        <input id="alturaB" type="number" min="0" step="1" value="10">
+      </label>
+      <label>Frequência (MHz)
+        <input id="freq" type="number" min="1" step="1" value="915">
+      </label>
+    </section>
+
+    <div id="estado">Preparando...</div>
+
+    <div id="resultado" hidden>
+      <div class="cartao" id="graficoWrap">
+        <svg id="grafico" role="img" aria-label="Perfil de elevação entre A e B"></svg>
+        <div id="dica" hidden></div>
+      </div>
+      <div id="diagnostico"></div>
+      <section id="resumo"></section>
+      <p class="nota" id="nota"></p>
+    </div>
+  </main>
+  <script src="visada.js"></script>
+</body>
+</html>
