@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { width: 1400px; height: 560px; overflow: hidden; font-family: "Segoe UI", Roboto, Arial, sans-serif; }
+  .tile { position: relative; width: 1400px; height: 560px; background: linear-gradient(120deg, #0a3a8c 0%, #1a73e8 100%); }
+  svg { position: absolute; inset: 0; }
+  .texto { position: absolute; left: 90px; top: 108px; }
+  .marca { display: flex; align-items: center; gap: 26px; }
+  .marca img { width: 128px; height: 128px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35)); }
+  .nome { color: #fff; font-size: 104px; font-weight: 700; letter-spacing: -1.5px; line-height: 1; }
+  .frase { margin-top: 26px; color: #fff; font-size: 38px; font-weight: 600; line-height: 1.25; }
+  .itens { margin-top: 16px; color: #d6e4ff; font-size: 24px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="tile">
+  <svg width="1400" height="560" viewBox="0 0 1400 560">
+    <defs>
+      <linearGradient id="frente" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8fd16a"/>
+        <stop offset="1" stop-color="#3f8f3a"/>
+      </linearGradient>
+    </defs>
+
+    <!-- serra ao fundo -->
+    <path d="M0,470 C120,446 220,458 330,436 C440,414 520,446 620,424 C720,402 800,356 900,378 C1000,400 1080,350 1180,362
+             C1260,372 1330,346 1400,356 L1400,560 L0,560 Z"
+          fill="#0b2f6e" opacity="0.55"/>
+
+    <!-- zona de Fresnel -->
+    <ellipse cx="1090" cy="285" rx="226" ry="30" transform="rotate(-6.2 1090 285)"
+             fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-dasharray="9 7"/>
+
+    <!-- relevo principal -->
+    <path d="M0,510 C200,500 420,500 600,488 C700,478 790,420 870,394 C906,384 930,398 964,420 C1010,450 1060,458 1110,436
+             C1160,414 1230,356 1300,346 C1340,340 1372,352 1400,366 L1400,560 L0,560 Z"
+          fill="url(#frente)"/>
+
+    <!-- antenas -->
+    <line x1="880" y1="392" x2="880" y2="308" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+    <line x1="1300" y1="346" x2="1300" y2="262" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- linha de visada -->
+    <line x1="880" y1="308" x2="1300" y2="262" stroke="#ea4335" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="880" cy="308" r="14" fill="#ea4335" stroke="#fff" stroke-width="5"/>
+    <circle cx="1300" cy="262" r="14" fill="#ea4335" stroke="#fff" stroke-width="5"/>
+    <text x="856" y="290" text-anchor="end" font-family="Segoe UI, Arial" font-size="32" font-weight="700" fill="#fff">A</text>
+    <text x="1322" y="240" font-family="Segoe UI, Arial" font-size="32" font-weight="700" fill="#fff">B</text>
+  </svg>
+
+  <div class="texto">
+    <div class="marca">
+      <img src="../icon128.png" alt="">
+      <span class="nome">GeoLink</span>
+    </div>
+    <div class="frase">Visada e coordenadas no Google Maps</div>
+    <div class="itens">Perfil de elevação · Zona de Fresnel · Mapa topográfico</div>
+  </div>
+</div>
+</body>
+</html>
