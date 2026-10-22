@@ -1,11 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "GeoLink v1.1",
-  "version": "1.1",
-  "description": "Lê coordenadas copiadas do Google e abre o local no topographic-map.com; gera a visada no Solwise a partir de uma medição de 2 pontos no Google Maps",
+  "name": "GeoLink",
+  "version": "1.1.1",
+  "description": "Leva coordenadas do Google Maps ao topographic-map.com e gera a visada (perfil de elevação e Fresnel) entre 2 pontos medidos.",
   "permissions": [
     "clipboardRead",
-    "tabs",
     "activeTab",
     "scripting"
   ],
@@ -25,7 +24,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Abrir coordenadas no mapa topográfico",
+    "default_title": "GeoLink",
     "default_icon": {
       "16": "icon16.png",
       "32": "icon32.png",

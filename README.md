@@ -4,7 +4,7 @@
 
 Extensão para Google Chrome que alterna rapidamente uma coordenada entre o **Google Maps** e o **[topographic-map.com](https://pt-br.topographic-map.com)** e gera a **visada (perfil de elevação com linha de visada e zona de Fresnel)** entre dois pontos medidos no Google Maps — útil para planejar enlaces de rádio, como repetidores LoRa/MeshCore.
 
-**Versão atual: 1.1**
+**Versão atual: 1.1.1** · [Política de privacidade](PRIVACY.md)
 
 ## Funcionalidades
 
@@ -51,14 +51,14 @@ O Google Maps não coloca os pontos de **Medir distância** na URL nem no HTML; 
 
 ### Atualizando de uma versão anterior
 
-Após baixar a nova versão, clique em **recarregar** (↻) no cartão do GeoLink em `chrome://extensions`. Como a versão 1.1 adiciona permissões, se aparecer algum erro remova a extensão e carregue a pasta novamente. Recarregue também as abas do Google Maps que já estavam abertas.
+Após baixar a nova versão, clique em **recarregar** (↻) no cartão do GeoLink em `chrome://extensions`. Como a versão 1.1 mudou as permissões, se aparecer algum erro remova a extensão e carregue a pasta novamente. Recarregue também as abas do Google Maps que já estavam abertas.
 
 ## Permissões
 
 | Permissão | Uso |
 |---|---|
 | `clipboardRead` | Ler a coordenada copiada |
-| `tabs` / `activeTab` | Ler a URL da aba atual e abrir novas abas |
+| `activeTab` | Ler a URL da aba ativa quando o ícone da extensão é clicado |
 | `scripting` | Ler a medição de distância no Google Maps, abrir a visada sobre o mapa e aplicar os pontos no Solwise |
 | `https://www.solwise.co.uk/*` | Acessar a ferramenta de elevação do Solwise |
 | `https://api.opentopodata.org/*`, `https://api.open-meteo.com/*` | Buscar as elevações do perfil de visada |
@@ -72,8 +72,15 @@ A página da visada é declarada em `web_accessible_resources` apenas para `goog
 - `visada.html` / `visada.js` — página da visada (elevação, linha de visada, Fresnel, curvatura da Terra)
 - `background.js` — abre o Solwise e aplica os dois pontos
 - `icon*.png`, `geolink.png` — ícones
+- `PRIVACY.md` — política de privacidade
+- `store/LISTING.md` — textos e checklist para o cadastro na Chrome Web Store
 
 ## Histórico de versões
+
+### 1.1.1
+
+- Preparação para a Chrome Web Store: nome sem versão, descrição dentro do limite de 132 caracteres e remoção da permissão `tabs` (o `activeTab` já cobre o uso; elimina o aviso "Ler seu histórico de navegação").
+- Política de privacidade ([PRIVACY.md](PRIVACY.md)) e textos do cadastro na loja ([store/LISTING.md](store/LISTING.md)).
 
 ### 1.1
 
