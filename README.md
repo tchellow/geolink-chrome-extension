@@ -81,6 +81,7 @@ A página da visada é declarada em `web_accessible_resources` apenas para `goog
 
 - Preparação para a Chrome Web Store: nome sem versão, descrição dentro do limite de 132 caracteres e remoção da permissão `tabs` (o `activeTab` já cobre o uso; elimina o aviso "Ler seu histórico de navegação").
 - Política de privacidade ([PRIVACY.md](PRIVACY.md)) e textos do cadastro na loja ([store/LISTING.md](store/LISTING.md)).
+- Correção: a coordenada copiada só é aceita com casas decimais e dentro dos limites (latitude ±90, longitude ±180); antes, textos como "400, 1" eram aceitos.
 
 ### 1.1
 

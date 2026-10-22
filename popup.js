@@ -24,13 +24,17 @@ function setStatus(msg, isError = false) {
   status.classList.toggle('error', isError);
 }
 
-// Tenta extrair um par lat,lon truncado a 5 casas decimais de um texto
+// Tenta extrair um par lat,lon truncado a 5 casas decimais de um texto.
+// Exige casas decimais e valores dentro dos limites, para não aceitar textos como "400, 1"
 function extractCoords(text) {
-  const match = text.match(/(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/);
+  const match = text.match(/(-?\d{1,3}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)/);
   if (!match) return null;
+  const lat = parseFloat(match[1]);
+  const lon = parseFloat(match[2]);
+  if (Math.abs(lat) > 90 || Math.abs(lon) > 180) return null;
   return {
-    lat: truncate5(parseFloat(match[1])),
-    lon: truncate5(parseFloat(match[2]))
+    lat: truncate5(lat),
+    lon: truncate5(lon)
   };
 }
 
